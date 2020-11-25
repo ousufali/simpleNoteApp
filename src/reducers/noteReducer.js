@@ -1,10 +1,22 @@
 
+const initialState = [
+    {
+        content: 'reducer defines how redux store works',
+        important: true,
+        id: 1,
+    },
+    {
+        content: 'state of store can contain any data',
+        important: false,
+        id: 2,
+    },
+]
 
-const noteReducer = (state = [], action) => {
+const noteReducer = (state = initialState, action) => {
+    console.log('ACTION', action)
+
     switch (action.type) {
         case 'NEW_NOTE':
-            // return state.concat(action.data)
-            // console.log('adding')
             return [...state, action.data]
 
         case 'TOGGLE_IMPORTANCE':
@@ -29,6 +41,7 @@ const generateId = () => {
 }
 
 export const createNote = (content) => {
+    //action creator function.........
     return {
         type: 'NEW_NOTE',
         data: {
