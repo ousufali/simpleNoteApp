@@ -1,18 +1,6 @@
+import noteServices from '../services/notes'
 
-const initialState = [
-    {
-        content: 'reducer defines how redux store works',
-        important: true,
-        id: 1,
-    },
-    {
-        content: 'state of store can contain any data',
-        important: false,
-        id: 2,
-    },
-]
-
-const noteReducer = (state = initialState, action) => {
+const noteReducer = (state = [], action) => {
     console.log('ACTION', action)
 
     switch (action.type) {
@@ -29,26 +17,40 @@ const noteReducer = (state = initialState, action) => {
             return state.map(note =>
                 note.id !== id ? note : changedNote
             )
-
+        case 'INIT_NOTES':
+            return action.data
 
         default:
             return state
     }
 }
 
-const generateId = () => {
-    return Number((Math.random() * 1000000).toFixed(0))
-}
+
 
 export const createNote = (content) => {
-    //action creator function.........
-    return {
-        type: 'NEW_NOTE',
-        data: {
-            content,
-            important: false,
-            id: generateId()
-        }
+    // return {
+    //     type: 'NEW_NOTE',
+    //     data,
+    // }
+    return async dispatch => {
+        const newNote = await noteServices.createNote(content)
+        dispatch({
+            type: 'NEW_NOTE',
+            data: newNote,
+        })
+    }
+}
+export const initializeNotes = () => {
+    // return{
+    //     type: 'INIT_NOTES',
+    //     data : notes
+    // }
+    return async dipatch => {
+        const notes = await noteServices.getAll()
+        dipatch({
+            type: 'INIT_NOTES',
+            data: notes
+        })
     }
 }
 
