@@ -2,7 +2,7 @@
   "notes": [
     {
       "content": "the app state is in redux store",
-      "important": true,
+      "important": false,
       "id": 1
     },
     {
@@ -24,6 +24,21 @@
       "content": "ali shah is good man",
       "important": true,
       "id": 5
+    },
+    {
+      "content": "notes are not added to database",
+      "important": true,
+      "id": 6
+    },
+    {
+      "content": "sssssssssssssssssssssssssssssssssssss",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "a",
+      "important": false,
+      "id": 8
     }
   ]
 }
